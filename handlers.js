@@ -1,7 +1,7 @@
-import { isValidColor, isDark } from './colors.js';
+import { isValidColor, isDark, colors } from './colors.js';
+import { headerEl, scoreEl } from './elements.js';
 
-const headerEl = document.querySelector('h1');
-const hoveredTextEl = document.querySelector('.hovered_color');
+export let score = 0;
 
 function logWords(results) {
   return results[results.length - 1][0].transcript;
@@ -15,10 +15,6 @@ function changeHeaderColor(color) {
   }
 }
 
-export function handleHover(e) {
-  hoveredTextEl.textContent = e.target.textContent;
-}
-
 export function handleResult({ results }) {
   const words = logWords(results);
   // lowercase
@@ -28,9 +24,38 @@ export function handleResult({ results }) {
   if (!isValidColor(color)) return;
 
   const colorSpan = document.querySelector(`.${color}`);
+  scoreEl.classList.remove('new');
+  if (!colorSpan.classList.contains('got')) {
+    score += 1;
+    scoreEl.textContent = score;
+    scoreEl.classList.add('new');
+  }
   colorSpan.classList.add('got');
 
   // change the background color
-  document.querySelector('.container').style.backgroundColor = color;
+  document.body.style.backgroundColor = color;
   changeHeaderColor(color);
+}
+
+export function reset() {
+  score = 0;
+  scoreEl.textContent = 0;
+  document.body.style.backgroundColor = '';
+}
+
+export function displayCurrentResult(score, highScore, element) {
+  let result = '';
+  if (score === 0) {
+    result = "You didn't guess anything";
+  } else if (score > 0 && score < 5) {
+    result = `You scored ${score} point${score > 1 ? 's' : ''}.`;
+  } else if (score > highScore) {
+    result = `Great! scored ${score} points and you beat the record 🎉`;
+  } else {
+    result = `You scored ${score} points. Still ${highScore - score} point${
+      score > 1 ? 's' : ''
+    } to beat the record!`;
+  }
+
+  element.innerHTML = result;
 }

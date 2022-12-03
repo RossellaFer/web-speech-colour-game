@@ -10,12 +10,35 @@
 
 <body>
   <div class="container">
-    <div class="instructions_container">
+    <div class="title">
       <h1>Say a Color</h1>
-      <p class="hovered_color"></p>
+      <div class="author">
+        <p>Inspired by <a class="link-high-contrast" target="_blank" href="https://beginnerjavascript.com/">Wes Bos' Beginner JavaScript</a></p>
+        <p>Coded by <a class="link-high-contrast" target="_blank" href="https://www.linkedin.com/in/rossella-ferrandino-67601226/">Rossella</a></p>
+        <p>Check code on <a class="link-high-contrast" target="_blank" href="https://github.com/RossellaFer/web-speech-colour-game">Github</a></p>
+      </div>
     </div>
-    <div class="colors"></div>
+
+    <div class="instructions">
+      <p class="error"></p>
+      <div class="content_container">
+        <div class="description">
+          <p><strong>Instructions</strong>: After clicking on Start, you have 30 seconds to say as many colors from the list as possible.<br>This game uses the experimental <a class="link" href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition" target="_blank">Speech Recognition API</a>, currently only available for Google Chrome. <br>Please allow microphone access to play the game.</p>
+          <div class="score_container">
+            <p class="current_score">Your current Score: <span id="score">0</span></p>
+            <p id="high_score"></p>
+          </div>
+        </div>
+
+        <div class="timer">
+          <div class="timer_container"><span id="timer">Start</span></div>
+        </div>
+      </div>
+    </div>
   </div>
+      
+  <div class="colors"></div>
+
   <script type="module" src="./speech.js"></script>
 
 </body>
