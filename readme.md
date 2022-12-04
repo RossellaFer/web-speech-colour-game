@@ -1,5 +1,7 @@
 ## Web speech colour game
 
+Hosted on [Github Pages](https://rossellafer.github.io/web-speech-colour-game/)
+
 Simple JavaScript game using the experimental [Speech Recognition API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition), only available in Chrome.
 
 This is an extension of the project by Wes Bos' course [Beginner JavaScript](https://beginnerjavascript.com/).
